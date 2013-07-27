@@ -8,6 +8,11 @@ local buttonNameLabel
 
 local buttonStateLabel
 
+local W = display.contentWidth
+local H = display.contentHeight
+local fontSize = 150
+local spacing = 100
+
 local function ouyaListener( event )
 
 	--add your button specific code here
@@ -29,13 +34,18 @@ end
 local function main()
 	
 	--set up label to display input
-	buttonNameLabel = display.newText( "", display.contentWidth*0.5, display.contentHeight*0.5 - 12, "Helvetica", 20 )
+	buttonNameLabel = display.newText( "", 0, 0, "Helvetica", fontSize )
 	buttonNameLabel:setTextColor( 255, 255, 255, 255 )
 	buttonNameLabel.text = "Button Name: "
+	buttonNameLabel.x = W * .5
+	buttonNameLabel.y = H * 0.5 + spacing
 	
-	buttonStateLabel = display.newText( "", display.contentWidth*0.5, display.contentHeight*0.5 + 12, "Helvetica", 20 )
+	buttonStateLabel = display.newText( "", 0, 0, "Helvetica", fontSize )
 	buttonStateLabel:setTextColor( 255, 255, 255, 255 )
 	buttonStateLabel.text = "Button State: "
+	buttonStateLabel.x = buttonNameLabel.x
+	buttonStateLabel.y = H * 0.5 - spacing
+	
 
 	--set the event listener for the controller
 	ouya:setListener( ouyaListener )
