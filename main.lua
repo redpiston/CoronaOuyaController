@@ -14,8 +14,6 @@ local W = display.contentWidth
 local H = display.contentHeight
 local fontSize = 150
 local spacing = 300
-local players = {}
-local numOfPlayers = 0
 
 local function ouyaListener( event )
 

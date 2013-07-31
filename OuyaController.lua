@@ -75,7 +75,7 @@ local function ouyaListener( event )
 	elseif (event.keyName == "buttonStart") then
 		e.buttonName = "start"
 	elseif (event.keyName == "a") then
-		e.buttonName = "select"
+		e.buttonName = "back"
 	
 	-- Xbox 360 triggers are not supported
 	
@@ -89,6 +89,7 @@ local function ouyaListener( event )
 		e.phase = "released"
 	end
 	
+	--to distinguish between controllers
 	if event.device.descriptor then
 		e.playerName = event.device.descriptor
 	end
