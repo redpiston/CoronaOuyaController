@@ -88,7 +88,11 @@ local function ouyaListener( event )
 	elseif (event.phase == "up") then
 		e.phase = "released"
 	end
-
+	
+	if event.device.descriptor then
+		e.playerName = event.device.descriptor
+	end
+	
 	ouya.callback( e )
 	
 	return true
