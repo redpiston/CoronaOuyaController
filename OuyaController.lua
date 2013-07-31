@@ -28,13 +28,57 @@ local ouya = display.newGroup()
 local function ouyaListener( event )
 	
 	local e = {}
-
-	if (event.keyName == "center") then
+	
+	if (event.keyName == "buttonA") then
 		e.buttonName = "o"
-	elseif (event.keyName == "menu") then
+	elseif (event.keyName == "buttonX") then
 		e.buttonName = "u"
-	elseif (event.keyName == "back") then
+	elseif (event.keyName == "buttonY") then
+		e.buttonName = "y"
+	elseif (event.keyName == "buttonB") then
 		e.buttonName = "a"
+		
+	--left analog stick and control pad
+	elseif (event.keyName == "left") then
+		e.buttonName = event.keyName
+	elseif (event.keyName == "right") then
+		e.buttonName = event.keyName
+	elseif (event.keyName == "up") then
+		e.buttonName = event.keyName
+	elseif (event.keyName == "down") then
+		e.buttonName = event.keyName
+	
+	--push in analog sticks
+	elseif (event.keyName == "leftJoystickDown") then
+		e.buttonName = event.keyName
+	elseif (event.keyName == "rightJoystickDown") then
+		e.buttonName = event.keyName
+	
+	-- home/Ouya button 
+	elseif (event.keyName == "u") then
+		e.buttonName = "home"
+	
+	-- shoulder buttons
+	elseif (event.keyName == "rightShoulderButton1") then
+		e.buttonName = "rightBumper"
+	elseif (event.keyName == "rightShoulderButton2") then
+		e.buttonName = "rightTrigger"
+	elseif (event.keyName == "leftShoulderButton1") then
+		e.buttonName = "leftBumper"
+	elseif (event.keyName == "leftShoulderButton2") then
+		e.buttonName = "leftTrigger"
+		
+	--Currently there is no support for the right analog stick, and the left analog stick
+	--behaves like the control pad
+
+	--Xbox 360 controllers:
+	elseif (event.keyName == "buttonStart") then
+		e.buttonName = "start"
+	elseif (event.keyName == "a") then
+		e.buttonName = "back"
+	
+	-- Xbox 360 triggers are not supported
+	
 	else
 		e.buttonName = event.keyName
 	end
@@ -44,7 +88,12 @@ local function ouyaListener( event )
 	elseif (event.phase == "up") then
 		e.phase = "released"
 	end
-
+	
+	--to distinguish between controllers
+	if event.device.descriptor then
+		e.playerName = event.device.descriptor
+	end
+	
 	ouya.callback( e )
 	
 	return true
